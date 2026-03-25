@@ -17,11 +17,11 @@ export default function About() {
   const yBackground = useTransform(scrollYProgress, [0, 1], [0, 300]);
 
   return (
-    <section ref={containerRef} id="about" className="relative py-24 lg:py-40 bg-white overflow-hidden">
+    <section ref={containerRef} id="about" className="relative py-16 lg:py-24 bg-white overflow-hidden">
       {/* Huge Background Text (EXPERIENCE) */}
       <motion.div 
         style={{ y: yBackground }}
-        className="absolute top-10 left-0 w-full text-center z-0 pointer-events-none select-none flex justify-center opacity-30 sm:opacity-50"
+        className="absolute -top-4 sm:-top-8 left-0 w-full text-center z-0 pointer-events-none select-none flex justify-center opacity-30 sm:opacity-50"
       >
         <span className="text-[120px] sm:text-[180px] lg:text-[250px] leading-none font-sans font-extrabold text-gray-100 tracking-tighter uppercase whitespace-nowrap">
           EXPERIENCE
@@ -57,7 +57,7 @@ export default function About() {
           </div>
 
           {/* Right Column: Text Content */}
-          <div className="lg:w-1/2 lg:py-20">
+          <div className="lg:w-1/2 lg:py-10">
             {/* Title / Subtitle Block */}
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-[2px] bg-[#FF8C00]" />
@@ -95,7 +95,7 @@ export default function About() {
         </div>
 
         {/* Bottom Horizontal Features (Icons + Texts) */}
-        <div className="grid md:grid-cols-3 gap-12 lg:gap-8 pt-16 border-t border-gray-200">
+        <div className="grid md:grid-cols-3 gap-12 lg:gap-8 pt-12 mt-12 border-t border-gray-200">
           {/* Feature 1 */}
           <div className="flex items-center justify-start md:justify-center gap-6 group">
             <div className="w-20 h-20 rounded-full border border-gray-300 flex items-center justify-center flex-shrink-0 group-hover:border-[#FF8C00] transition-colors duration-500 bg-white shadow-sm">

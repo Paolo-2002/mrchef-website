@@ -7,22 +7,28 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Marco R.',
-    text: 'Il panino più buono di tutta Casoria. Ingredienti freschi e porzioni generose. Ci torno ogni settimana! Il Double Chef è un capolavoro.',
+    name: 'Claudia Cino',
+    text: 'Sono stata ieri sera e posso dire che davvero é il top. Personale gentilissimo e molto accogliente. Il cibo squisito, porzione abbondante ma soprattutto innovativo. Ci ritorneremo sicuramente ❤️',
     stars: 5,
-    avatar: '👨',
+    avatar: '👤',
   },
   {
-    name: 'Valentina S.',
-    text: 'Finalmente una paninoteca che capisce il cibo di qualità. Il Pistacchiotto è da urlo — crema di pistacchio e mortadella, una combo perfetta!',
+    name: 'Raffaele Maverik',
+    text: 'Arrivati nel piccolo locale con due sale, abbiamo scelto due panini "special". Erano una bomba!! Panino con due hamburger enormi e di ottima qualità, abbondante patatine, bacon e cipolla in agrodolce. Cibo ottimo.. complimenti davvero!!!',
     stars: 5,
-    avatar: '👩',
+    avatar: '👤',
   },
   {
-    name: 'Luigi M.',
-    text: 'Servizio veloce e panini spettacolari. Il Bufalino è il mio preferito in assoluto. Mr. Chef è il top di Casoria, punto.',
+    name: 'Giuseppe Tarantino',
+    text: 'Esperienza unica hamburger di Chianina, spettacolare. Panini da sballo. Il locale è situato in un punto strategico e facile da trovare. Ve lo consiglio vivamente, cibo adatto per tutti. Dai bambini, Adolescenti ed Adulti. 😋',
     stars: 5,
-    avatar: '👨‍🍳',
+    avatar: '👤',
+  },
+  {
+    name: 'darth_008',
+    text: 'Locale carino, cibo ottimo sopratutto per chi è mangione dato che fanno piatti ricchi e pieni, consigliatissimo. Si mangia benissimo e camerieri veloci e gentili.',
+    stars: 4,
+    avatar: '👤',
   },
 ];
 
@@ -35,14 +41,14 @@ export default function Testimonials() {
   const next = () => setCurrent((c) => (c + 1) % testimonials.length);
 
   return (
-    <section className="py-24 lg:py-32 bg-[#FFF8F0]" ref={ref}>
+    <section className="py-16 lg:py-20 bg-[#FFF8F0]" ref={ref}>
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-8 h-px bg-[#FF8C00]" />
@@ -93,7 +99,7 @@ export default function Testimonials() {
           </motion.div>
 
           {/* Controls */}
-          <div className="flex justify-center gap-4 mt-10">
+          <div className="flex justify-center gap-4 mt-8">
             <button
               onClick={prev}
               className="w-12 h-12 border border-[#FF8C00] text-[#FF8C00] flex items-center justify-center hover:bg-[#FF8C00] hover:text-white transition-all duration-300"

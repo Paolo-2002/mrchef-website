@@ -122,13 +122,8 @@ export default function Hero() {
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-[#5d7647] rounded-full flex items-center justify-center shadow-xl relative"
             >
-              {/* Spinning Text SVG */}
-              <motion.div 
-                initial={{ rotate: 0 }}
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-                className="absolute inset-2"
-              >
+              {/* Spinning Text SVG (Using native CSS animation for immediate render) */}
+              <div className="absolute inset-2 animate-[spin_15s_linear_infinite]">
                 <svg viewBox="0 0 100 100" className="w-full h-full p-2">
                   <path
                     id="textPath"
@@ -141,7 +136,7 @@ export default function Hero() {
                     </textPath>
                   </text>
                 </svg>
-              </motion.div>
+              </div>
 
               {/* Chef Icon in the Center */}
               <div className="absolute text-white">
