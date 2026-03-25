@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-[68px]">
       {/* Hero */}
       <section className="relative h-72 lg:h-96 bg-[#1A1A1A] flex items-end overflow-hidden">
         <Image

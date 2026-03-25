@@ -10,7 +10,7 @@ export default function MenuPage() {
   const currentCategory = menuData.find(c => c.id === activeTab);
 
   return (
-    <div className="pt-20">
+    <div className="pt-[68px]">
       {/* Hero Banner */}
       <section className="relative h-72 lg:h-96 bg-[#1A1A1A] flex items-end overflow-hidden">
         <Image src="/images/imgi_10_492826584_1246809604117631_7285508162846412022_n.jpg" alt="Menù Mr. Chef" fill className="object-cover opacity-40" />

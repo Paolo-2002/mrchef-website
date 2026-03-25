@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -10,12 +11,14 @@ const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Menù', href: '/menu' },
-  { label: 'Storia', href: '/storia' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Contatti', href: '/contatti' },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -25,11 +28,13 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const isSolid = !isHome || scrolled;
+
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
+          isSolid
             ? 'bg-white shadow-md py-3'
             : 'bg-transparent py-5'
         }`}
@@ -37,12 +42,12 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-11 h-11 rounded-full overflow-hidden flex-shrink-0 border border-white/20">
+            <div className="relative w-11 h-11 rounded-full overflow-hidden flex-shrink-0 border border-black/10">
               <Image src="/images/logo.jpg" alt="Mr. Chef Logo" fill className="object-cover" />
             </div>
             <span
               className={`font-serif text-xl font-semibold transition-colors duration-300 ${
-                scrolled ? 'text-[#1A1A1A]' : 'text-white'
+                isSolid ? 'text-[#1A1A1A]' : 'text-white'
               }`}
             >
               Mr. Chef
@@ -56,7 +61,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`text-xs font-medium uppercase tracking-widest transition-colors duration-300 hover:text-[#FF8C00] ${
-                  scrolled ? 'text-[#1A1A1A]' : 'text-white'
+                  isSolid ? 'text-[#1A1A1A]' : 'text-white'
                 }`}
               >
                 {link.label}
@@ -79,7 +84,7 @@ export default function Navbar() {
               onClick={() => setMobileOpen(true)}
               aria-label="Apri menu"
             >
-              <Menu size={24} className={scrolled ? 'text-[#1A1A1A]' : 'text-white'} />
+              <Menu size={24} className={isSolid ? 'text-[#1A1A1A]' : 'text-white'} />
             </button>
           </div>
         </div>

@@ -21,7 +21,7 @@ const allImages = [
 
 export default function GalleryPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-[68px]">
       {/* Hero */}
       <section className="relative h-72 lg:h-96 bg-[#1A1A1A] flex items-end overflow-hidden">
         <Image src="/images/imgi_14_493317795_1246809567450968_6618052407358943490_n.jpg" alt="Gallery Mr. Chef" fill className="object-cover opacity-40" />

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function ContattiPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-[68px]">
       {/* Hero */}
       <section className="relative h-72 lg:h-96 bg-[#1A1A1A] flex items-end overflow-hidden">
         <Image src="/images/imgi_17_493933554_1246686730796585_8221335887692093935_n.jpg" alt="Contatti Mr. Chef" fill className="object-cover opacity-40" />
