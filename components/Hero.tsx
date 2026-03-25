@@ -1,11 +1,23 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
+const rotatingWords = ['EXPERIENCE', 'RESTAURANT'];
+
 export default function Hero() {
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((i) => (i + 1) % rotatingWords.length);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1A1A1A]">
       {/* Background Image */}
@@ -14,11 +26,13 @@ export default function Hero() {
           src="/images/imgi_20_492909934_1246274997504425_4233597304883957440_n.jpg"
           alt="Mr. Chef - Panini artigianali"
           fill
-          className="object-cover opacity-80"
+          quality={100}
+          sizes="100vw"
+          className="object-cover opacity-70 sm:blur-[2px] transition-all duration-1000"
           priority
         />
         {/* Subtle dark overlay for better contrast if needed */}
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Center Layout Container */}
@@ -28,9 +42,9 @@ export default function Hero() {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative flex flex-col items-center justify-center w-[20rem] h-[20rem] sm:w-[28rem] sm:h-[28rem] md:w-[36rem] md:h-[36rem] lg:w-[42rem] lg:h-[42rem] bg-[#FF8C00] rounded-full shadow-2xl overflow-visible"
+          className="relative flex flex-col items-center justify-center w-[22rem] h-[22rem] sm:w-[28rem] sm:h-[28rem] md:w-[34rem] md:h-[34rem] lg:w-[38rem] lg:h-[38rem] bg-[#FF8C00] rounded-full shadow-2xl overflow-visible"
         >
-          {/* Subtle Background Pattern inside the circle (optional SVG pattern) */}
+          {/* Subtle Background Pattern inside the circle */}
           <div className="absolute inset-0 opacity-10 rounded-full" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #000 1px, transparent 0)', backgroundSize: '24px 24px' }} />
 
           {/* Subtitle */}
@@ -38,25 +52,44 @@ export default function Hero() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-[#1A1A1A] text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest mb-2 sm:mb-4 lg:mb-6 text-center px-4 z-10"
+            className="text-[#1A1A1A] text-xs sm:text-sm font-bold uppercase tracking-widest mb-2 sm:mb-4 lg:mb-4 text-center px-4 z-10"
           >
-            L&apos;ESPERIENZA DEL GUSTO AUTENTICO
+            LA VERA ESSENZA DEL GUSTO
           </motion.h3>
 
-          {/* Main Title (Hollow/Outlined style) */}
-          <motion.h1
+          {/* Fixed Main Title (Hollow/Outlined style like "GREAT DINING") */}
+          <motion.h2
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.8 }}
-            className="font-sans font-bold text-center leading-none z-10 mb-6 sm:mb-10 lg:mb-14"
+            className="font-sans font-bold text-center leading-none z-10 mb-1 lg:mb-2"
             style={{ 
-              fontSize: 'clamp(3.5rem, 8vw, 7.5rem)',
+              fontSize: 'clamp(3rem, 6.5vw, 5.5rem)',
               WebkitTextStroke: '2px white',
               color: 'transparent'
             }}
           >
             MR. CHEF
-          </motion.h1>
+          </motion.h2>
+
+          {/* Alternating Sub Title (Solid white like "RESTAURANT") */}
+          <div className="z-10 mb-6 sm:mb-8 lg:mb-12 flex items-center justify-center min-h-[3.5rem] sm:min-h-[4.5rem] lg:min-h-[5.5rem]">
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={wordIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="font-sans font-bold text-center leading-none text-white"
+                style={{ 
+                  fontSize: 'clamp(2.5rem, 5.5vw, 4.5rem)',
+                }}
+              >
+                {rotatingWords[wordIndex]}
+              </motion.h1>
+            </AnimatePresence>
+          </div>
 
           {/* CTA Button */}
           <motion.div
@@ -80,36 +113,44 @@ export default function Hero() {
           <motion.div
             initial={{ scale: 0, opacity: 0, rotate: -45 }}
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
-            transition={{ delay: 1.2, duration: 0.8, type: 'spring' }}
-            className="absolute -bottom-4 -right-4 sm:-bottom-8 sm:-right-8 md:-bottom-10 md:right-0 lg:-bottom-6 lg:right-10 w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-[#5d7647] rounded-full flex items-center justify-center shadow-xl z-20"
+            transition={{ delay: 0.3, duration: 0.8, type: 'spring' }}
+            className="absolute -bottom-4 -right-12 sm:-bottom-8 sm:-right-16 md:-bottom-10 md:-right-12 lg:-bottom-6 lg:-right-4 z-20"
           >
-            {/* Spinning Text SVG */}
-            <motion.div 
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-              className="absolute inset-2"
+            <motion.div
+              initial={{ y: 0 }}
+              animate={{ y: [0, -15, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-[#5d7647] rounded-full flex items-center justify-center shadow-xl relative"
             >
-              <svg viewBox="0 0 100 100" className="w-full h-full p-2">
-                <path
-                  id="textPath"
-                  d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
-                  fill="transparent"
-                />
-                <text className="text-[12px] font-bold uppercase tracking-[0.2em]" fill="white">
-                  <textPath href="#textPath" startOffset="0%">
-                    REAL EXPERIENCE • TASTE OF ITALY • 
-                  </textPath>
-                </text>
-              </svg>
-            </motion.div>
+              {/* Spinning Text SVG */}
+              <motion.div 
+                initial={{ rotate: 0 }}
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+                className="absolute inset-2"
+              >
+                <svg viewBox="0 0 100 100" className="w-full h-full p-2">
+                  <path
+                    id="textPath"
+                    d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+                    fill="transparent"
+                  />
+                  <text className="text-[12px] font-bold uppercase tracking-[0.2em]" fill="white">
+                    <textPath href="#textPath" startOffset="0%">
+                      REAL EXPERIENCE • TASTE OF ITALY • 
+                    </textPath>
+                  </text>
+                </svg>
+              </motion.div>
 
-            {/* Chef Icon in the Center */}
-            <div className="absolute text-white">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="sm:w-10 sm:h-10 md:w-12 md:h-12">
-                <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/>
-                <line x1="6" y1="17" x2="18" y2="17"/>
-              </svg>
-            </div>
+              {/* Chef Icon in the Center */}
+              <div className="absolute text-white">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="sm:w-10 sm:h-10 md:w-12 md:h-12">
+                  <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/>
+                  <line x1="6" y1="17" x2="18" y2="17"/>
+                </svg>
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

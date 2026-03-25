@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
 function InstagramIcon({ size = 16 }: { size?: number }) {
@@ -28,11 +29,8 @@ export default function Footer() {
           {/* Col 1: Logo + desc + socials */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-[#FF8C00] flex items-center justify-center flex-shrink-0">
-                <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
-                  <path d="M18 6C18 6 12 9.5 12 15c0 2.5 1.2 4.7 3 6L13.5 29h9L21 21c1.8-1.3 3-3.5 3-6 0-5.5-6-9-6-9Z" fill="white"/>
-                  <path d="M14 13Q18 11 22 13" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                </svg>
+              <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-white/20">
+                <Image src="/images/logo.jpg" alt="Mr. Chef Logo" fill className="object-cover" />
               </div>
               <span className="font-serif text-xl font-semibold">Mr. Chef</span>
             </div>
