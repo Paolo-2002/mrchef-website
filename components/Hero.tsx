@@ -23,12 +23,12 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/imgi_20_492909934_1246274997504425_4233597304883957440_n.jpg"
+          src="/images/hero-bg-4k.jpg"
           alt="Mr. Chef - Panini artigianali"
           fill
           quality={100}
           sizes="100vw"
-          className="object-cover opacity-70 sm:blur-[2px] transition-all duration-1000"
+          className="object-cover opacity-70 transition-all duration-1000"
           priority
         />
         {/* Subtle dark overlay for better contrast if needed */}
